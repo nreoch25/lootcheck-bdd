@@ -7,4 +7,9 @@ describe("App", () => {
   it("renders properly", () => {
     expect(app).toMatchSnapshot();
   });
+  it("contains a connected Wallet component", () => {
+    // enzyme trick to log out jsx
+    //console.log(app.debug());
+    expect(app.find("Connect(Wallet)").exists()).toBe(true);
+  });
 });
