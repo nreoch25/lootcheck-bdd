@@ -1,9 +1,28 @@
 import balanceReducer from "../reducers/balance";
+import balanceReducer2 from "../reducers/balance";
 import * as constants from "../actions/constants";
 
 describe("balanceReducer", () => {
-  it("sets a balance", () => {
+  describe("when initializing", () => {
     const balance = 10;
-    expect(balanceReducer(undefined, { type: constants.SET_BALANCE, balance })).toEqual(balance);
+    it("sets a balance", () => {
+      expect(balanceReducer(undefined, { type: constants.SET_BALANCE, balance })).toEqual(balance);
+    });
+    describe("then re-initializing", () => {
+      it("reads the balance from cookies", () => {
+        expect(balanceReducer2(undefined, {})).toEqual(balance);
+      });
+    });
+  });
+
+  it("deposits into the balance", () => {
+    const deposit = 10;
+    const initialState = 5
+    expect(balanceReducer(initialState, { type: constants.DEPOSIT_BALANCE, deposit })).toEqual(initialState + deposit);
+  });
+  it("withdraws from the balance", () => {
+    const withdraw = 5;
+    const initialState = 10;
+    expect(balanceReducer(initialState, { type: constants.WITHDRAW_BALANCE, withdraw })).toEqual(initialState - withdraw);
   });
 });
