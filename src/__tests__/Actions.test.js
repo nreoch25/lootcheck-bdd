@@ -15,4 +15,4 @@ it("creates an action to withdraw from the balance", () => {
   const withdraw = 10;
   const expectedAction = { type: constants.WITHDRAW_BALANCE, withdraw };
   expect(actions.withdrawBalance(withdraw)).toEqual(expectedAction);
-})
+});
